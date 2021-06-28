@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>TEXT EFFECT</title>
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  background-image:radial-gradient(red,pink,blue);
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+div {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(221, 25, 25, 0.1);
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+input {
+  width: 50px;
+  padding: 5px;
+  font-size: 18px;
+  background-image: radial-gradient(pink, red,blue);
+  border: none;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+}
+h1{
+    border:2px solid rgb(221, 48, 77);
+    animation-name:animate;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes animate {
+    50%{border-radius:50%;color:rgb(60, 255, 0)};
+    60%{transform: rotate(360deg);}
+    40%{color:lawngreen;color:maroon;}
+    
+}
+    </style>
+  </head>
+  <body>
+    <h1 id="text">Starting...</h1>
+
+    <div>
+      <label for="speed">Speed:</label>
+      <input type="number" name="speed" id="speed" value="1" min="1" max="10" step="1">
+    </div>
+  
+  </body>
+  <script>
+      const textEl = document.getElementById('text')
+const speedEl = document.getElementById('speed')
+const text = 'We Love Programming!'
+let idx = 1
+let speed = 300 / speedEl.value
+
+writeText()
+
+function writeText() {
+    textEl.innerText = text.slice(0, idx)
+    idx++
+
+    if(idx > text.length) {
+        idx = 1
+    }
+
+    setTimeout(writeText, speed)
+}
+
+
+speedEl.addEventListener('input', (e) => speed = 300 / e.target.value)
+  </script>
+</html>
